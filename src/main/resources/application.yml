@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/flyway
+    username: postgres
+    password: password1
+    initialization-mode: always
+  logging:
+    level:
+      org.springframework.data.r2dbc:Debug
