@@ -1,4 +1,4 @@
-package com.jpa.examples.location.address.controller;
+package com.jpa.examples.location.address;
 
 import com.jpa.examples.location.address.AddressResponse;
 import com.jpa.examples.location.address.AddressService;
