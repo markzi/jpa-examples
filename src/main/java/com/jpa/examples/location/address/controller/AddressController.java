@@ -23,6 +23,12 @@ public class AddressController {
         return addressService.findAll();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AddressResponse findById(@PathVariable("id") Long id) {
+        return addressService.findById(id);
+    }
+
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public AddressResponse delete(@PathVariable("id") Long id) {
