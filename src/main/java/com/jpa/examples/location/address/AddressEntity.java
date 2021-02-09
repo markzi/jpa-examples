@@ -2,13 +2,16 @@ package com.jpa.examples.location.address;
 
 import com.jpa.examples.location.town.TownEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 
-@Data
 @Entity
 @Table(schema = "location", name = "address")
+@Getter
+@Setter
 public class AddressEntity {
 
     @Id
@@ -27,7 +30,7 @@ public class AddressEntity {
     @Column(name = "postcode")
     private String postcode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "town_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "town_id", referencedColumnName = "id")
     private TownEntity town;
 }

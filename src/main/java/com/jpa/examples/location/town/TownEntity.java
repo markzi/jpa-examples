@@ -6,10 +6,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Set;
 
-
-@Data
 @Entity
 @Table(schema = "location", name = "town")
+@Getter
+@Setter
 public class TownEntity {
 
     @Id
@@ -18,6 +18,6 @@ public class TownEntity {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "town")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "town")
     private Set<AddressEntity> address;
 }

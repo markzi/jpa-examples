@@ -21,7 +21,7 @@ public class LocationService {
 
     public List<LocationResponse> findAll() {
         return addressService.findAll().stream().map(addressResponse -> {
-            TownResponse townResponse = townService.findById(addressResponse.getTownId());
+            TownResponse townResponse = townService.findById(addressResponse.getTown().getId());
             return LocationResponse.convert.apply(addressResponse, townResponse);
         }).collect(Collectors.toList());
     }

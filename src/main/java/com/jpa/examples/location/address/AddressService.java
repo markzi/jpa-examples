@@ -1,12 +1,12 @@
 package com.jpa.examples.location.address;
 
 
+import com.jpa.examples.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class AddressService {
@@ -23,6 +23,24 @@ public class AddressService {
      */
     @Transactional
     public List<AddressResponse> findAll() {
-        return addressRepository.findAll().stream().map(address -> AddressResponse.convert.apply(address)).collect(Collectors.toList());
+        return addressRepository.findAll().stream().map(address -> convert(address)).collect(Collectors.toList());
+    }
+
+    public AddressResponse findById(Long id) {
+        return convert(findByIdFromRepository(id));
+    }
+
+    public AddressResponse delete(Long id) {
+        AddressEntity addressEntity = findByIdFromRepository(id);
+        addressRepository.delete(addressEntity);
+        return convert(addressEntity);
+    }
+
+    private AddressEntity findByIdFromRepository(Long id) {
+        return addressRepository.findById(id).orElseThrow(NotFoundException::new);
+    }
+
+    private AddressResponse convert(AddressEntity addressEntity) {
+        return AddressResponse.convert.apply(addressEntity);
     }
 }
