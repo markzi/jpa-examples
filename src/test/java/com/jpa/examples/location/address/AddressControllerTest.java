@@ -30,9 +30,6 @@ class AddressControllerTest {
     @MockBean
     private AddressService addressService;
 
-    @MockBean
-    private EntityManagerFactory entityManagerFactory;
-
     @Autowired
     private MockMvc mockMvc;
 

@@ -1,18 +1,16 @@
-package com.jpa.examples.location.address;
+package com.jpa.examples;
 
 import com.jpa.examples.location.town.TownEntity;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(schema = "location", name = "address")
 @Getter
 @Setter
-public class AddressEntity {
+public class JpaCascadeTypeNoneEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +28,8 @@ public class AddressEntity {
     @Column(name = "postcode")
     private String postcode;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "town_id", referencedColumnName = "id")
     private TownEntity town;
+
 }
